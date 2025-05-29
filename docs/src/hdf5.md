@@ -161,6 +161,9 @@ For values with physical units, the dataset only contains the numerical values. 
         DATA = {2453.25, 234.34, 2039.22, ...]
     }
 
+The `units` attribute must be attached to the low-level dataset that contains the numerical values, not to HDF5 groups that represent arrays of array or similar. This ensures that reading the low-level dataset will also result in values with units, and that higher-level data structures have automatic support for units.
+
+
 ## Encoded arrays
 
 Specialized structures should exist to represent encoded data. An important application is for lossless compression of waveform vectors (see [Data Compression](@ref)). All HDF5 objects representing encoded arrays must carry (in addition to the usual `datatype`) a `codec` string attribute holding the encoder algorithm identifier (a list can be found in [Data Compression](@ref)) in order to be decoded. Some decoders might require additional mandatory attributes.
