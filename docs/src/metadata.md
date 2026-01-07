@@ -40,6 +40,9 @@ formatted as follows:
 
 where:
 
+!!! warning test
+test 
+
 * `TIMESTAMP` is a LEGEND-style timestamp `yyymmddThhmmssZ` (in UTC time),
   also used to label data cycles, specifying the start of validity
 * `DATATYPE` is the data type (`all`, `phy`, `cal`, `lar`, etc.) to which the
@@ -51,6 +54,10 @@ where:
   metadata object depending on `mode` (see below). In general, the files are
   combined "in cascade" (precedence order first to last) into the final metadata
   object.
+
+> [!WARNING]
+> This action is irreversible.
+
 
 The above example record, if appearing at the top of the validity file,
 translates to:
