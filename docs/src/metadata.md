@@ -41,14 +41,22 @@ formatted as follows:
 where:
 
 * `TIMESTAMP` is a LEGEND-style timestamp `yyymmddThhmmssZ` (in UTC time),
-  also used to label data cycles, specifying the start of validity. All entries within a file are sorted by their timestampby earliest to latest
+  also used to label data cycles, specifying the start of validity.
 * `DATATYPE` is the data type (`phy`, `cal`, `lar`, `fft` etc.) to which the
-  metadata applies. `all` is a wildcard referring to a change that affects all posible datatypes.
+  metadata applies. `*` is a wildcard referring to a change that affects all possible datatypes.
 * `MODE` can be `reset`, `append`, `remove`, `replace`.
-* `apply` takes an array of metadata files, to be comined into the main
+* `apply` takes an array of metadata files, to be combined into the main
   metadata object depending on `mode` (see below). In general, the files are
   combined "in cascade" (precedence order first to last) into the final metadata
   object.
+
+!!! note 
+    Defaults for fields are not allowed. An error should be thrown if a field is omitted.
+
+!!! warning 
+    All entries within a file are sorted by their timestamp, from earliest to latest. 
+    A given timestamp can only have one validity entry per category. 
+    Duplicate timestamps are applied in the order (from top to bottom) they appear in the file.
 
 The above example record, if appearing at the top of the validity file,
 translates to:
@@ -64,7 +72,7 @@ Modes:
 * `append`: append (in cascade) files listed in `apply` to the current file
   list.
 * `remove`: remove the file(s) listed in `apply` from the current file list.
-* `replace`: replace, in the current fule list, the first file listed in
+* `replace`: replace, in the current file list, the first file listed in
   `apply` with the second one.
 
 
